@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Математический тест — 10 класс</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <p class="eyebrow">Математика · 10 класс</p>
+      <h1>Проверь свои знания</h1>
+      <p class="intro">Выбери по одному ответу на каждый вопрос и нажми «Завершить тест».</p>
+    </header>
+
+    <form action="{{ url_for('result') }}" method="post">
+      {% for question in questions %}
+      <fieldset class="question-card">
+        <legend><span>{{ loop.index }}</span>{{ question.text }}</legend>
+        <div class="answers">
+          {% for value, label in question.options %}
+          <label class="answer">
+            <input type="radio" name="{{ question.id }}" value="{{ value }}" required>
+            <span>{{ label }}</span>
+          </label>
+          {% endfor %}
+        </div>
+      </fieldset>
+      {% endfor %}
+      <button type="submit">Завершить тест</button>
+    </form>
+  </main>
+</body>
+</html>

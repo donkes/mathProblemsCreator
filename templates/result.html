@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Результат теста</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container result-page">
+    <section class="result-card">
+      <p class="eyebrow">Результат готов</p>
+      <h1>Твой результат: {{ score }} из {{ total }}</h1>
+      <p class="score-text">
+        {% if score == total %}Отлично! Все ответы верные.
+        {% elif score >= 3 %}Очень хороший результат! Продолжай в том же духе.
+        {% elif score >= 2 %}Неплохо! Повтори темы и попробуй ещё раз.
+        {% else %}Не сдавайся: повтори материал и пройди тест снова.
+        {% endif %}
+      </p>
+      <a class="button-link" href="{{ url_for('index') }}">Пройти ещё раз</a>
+    </section>
+  </main>
+</body>
+</html>
